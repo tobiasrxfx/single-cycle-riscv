@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at animation_7seg.sv(13): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at ram.sv(17): always construct contains both blocking and non-blocking assignments
