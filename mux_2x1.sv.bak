@@ -1,0 +1,12 @@
+module(input logic SW[7:0],
+		 input logic SW[15:8],
+		 input logic SW[17],
+		 output logic LEDR[7:0]);
+		 
+		 assign LEDR[7:0] = SW[17] == 1'b1 ? SW[15:8] : SW[7:0];
+		
+endmodule	
+		 
+		 
+		 
+

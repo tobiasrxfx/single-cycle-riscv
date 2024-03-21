@@ -1,0 +1,36 @@
+module control_unit(input [6:0] op,
+                    input [2:0] funct3,
+                    input [6:0] funct7,
+                    output logic [2:0] ula_control,
+                    output logic ula_src,
+                    output logic reg_write);
+  
+  assign reg_write = 1'b1; 
+  
+  always @* begin 
+    
+    case (op)
+      7'b0010_011 : begin 
+        ula_src 	<= 1'b1;
+        ula_control <= 3'b000;// Addi 
+      end 
+      default : begin 
+        ula_src <= 1'b0;
+        case (funct3)
+          3'b000 : begin 
+            if (funct7 == 7'b0000_000)
+              ula_control <= 3'b000; // Add
+            else 
+              ula_control <= 3'b001; //Sub 
+          end 
+          3'b111 : ula_control <= 3'b010; //And
+          3'b110 : ula_control <= 3'b011; //Or 
+          3'b100 : ula_control <= 3'b100; //Xor
+          3'b010 : ula_control <= 3'b101; //Slt
+        endcase 
+      end 
+    endcase
+    
+  end 
+  
+endmodule 
